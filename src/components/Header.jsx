@@ -17,7 +17,7 @@ export default function Header() {
     const token = document.cookie.includes("token=");
     if (token) {
       axios
-        .get("http://localhost:4000/profile", {
+        .get("https://post-backend-9ycs.onrender.com/profile", {
           // 发送请求时带上凭证
           withCredentials: true,
         })
@@ -39,7 +39,7 @@ export default function Header() {
   async function logout() {
     try {
       await axios.post(
-        "http://localhost:4000/logout",
+        "https://post-backend-9ycs.onrender.com/logout",
         {},
         {
           withCredentials: true,

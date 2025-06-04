@@ -81,12 +81,16 @@ export default function CreatePost() {
     // 发送 POST 请求到后端
     try {
       console.log("Sending request to backend...");
-      const response = await axios.post("http://localhost:4000/post", data, {
-        withCredentials: true,
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axios.post(
+        "https://post-backend-9ycs.onrender.com/post",
+        data,
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       // 打印响应数据
       console.log("Create post response:", response.data);
       if (response.data) {

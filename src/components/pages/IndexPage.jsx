@@ -11,7 +11,7 @@ export default function IndexPage() {
   // 使用useEffect钩子,在组件挂载时发送HTTP请求获取文章列表，
   useEffect(() => {
     axios
-      .get("http://localhost:4000/post")
+      .get("https://post-backend-9ycs.onrender.com/post")
       .then((response) => {
         setPosts(response.data);
       })

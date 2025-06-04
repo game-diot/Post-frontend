@@ -35,7 +35,7 @@ export default function RegisterPage() {
     try {
       // 发送注册请求
       const response = await axios.post(
-        "http://localhost:4000/register",
+        "https://post-backend-9ycs.onrender.com/register",
         {
           username,
           email,

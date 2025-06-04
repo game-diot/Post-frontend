@@ -12,7 +12,7 @@ import CreatePost from "./components/pages/CreatePostPage";
 import PostPage from "./components/pages/PostPage";
 import EditPost from "./components/pages/EditPostPage";
 // 设置axios的默认请求地址和跨域请求
-axios.defaults.baseURL = "http://localhost:4000";
+axios.defaults.baseURL = "https://post-backend-9ycs.onrender.com";
 axios.defaults.withCredentials = true;
 // App组件的JSX
 function App() {

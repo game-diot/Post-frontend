@@ -21,7 +21,9 @@ export default function PostPage() {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/post/${id}`);
+        const response = await axios.get(
+          `https://post-backend-9ycs.onrender.com/post/${id}`
+        );
         setPost(response.data);
         console.log("[PostPage] Received post data:", response.data);
         console.log("[PostPage] Image URL:", response.data.imageUrl);
@@ -41,9 +43,12 @@ export default function PostPage() {
   const handleConfirmDelete = async () => {
     setShowDeleteModal(false); // 关闭模态框
     try {
-      const response = await axios.delete(`http://localhost:4000/post/${id}`, {
-        withCredentials: true,
-      });
+      const response = await axios.delete(
+        `https://post-backend-9ycs.onrender.com/post/${id}`,
+        {
+          withCredentials: true,
+        }
+      );
       if (response.data.message) {
         navigate("/"); // 删除成功后跳转到主页
       }
@@ -63,7 +68,7 @@ export default function PostPage() {
   const getImageUrl = (path) => {
     if (!path) return null;
     if (path.startsWith("http")) return path;
-    return `http://localhost:4000/uploads/${path}`;
+    return `https://post-backend-9ycs.onrender.com/uploads/${path}`;
   };
   // 返回Post文章详情的JSX
   return (
@@ -99,21 +104,18 @@ export default function PostPage() {
         dangerouslySetInnerHTML={{ __html: post.content }}
       />
 
-      {user &&
-        post.author &&
-        user.id === String(post.author._id) && ( // 注意这里 post.author._id 可能是 ObjectId 类型，需要转成字符串比较
-          <div className="post-actions">
-            <Link to={`/edit/${post._id}`} className="edit-button">
-              编辑文章
-            </Link>
-            {/* ✅ 修改这里：点击按钮时显示模态框，而不是直接删除 */}
-            <button onClick={handleDeleteButtonClick} className="delete-button">
-              删除文章
-            </button>
-          </div>
-        )}
+      {user && post.author && user.id === String(post.author._id) && (
+        <div className="post-actions">
+          <Link to={`/edit/${post._id}`} className="edit-button">
+            编辑文章
+          </Link>
 
-      {/* ✅ 渲染自定义确认模态框 */}
+          <button onClick={handleDeleteButtonClick} className="delete-button">
+            删除文章
+          </button>
+        </div>
+      )}
+
       {showDeleteModal && (
         <ConfirmModal
           message="确定要删除这篇文章吗？此操作不可撤销！"

@@ -35,7 +35,9 @@ export default function EditPost() {
     const fetchPost = async () => {
       try {
         // 发送 GET 请求获取文章数据
-        const response = await axios.get(`http://localhost:4000/post/${id}`);
+        const response = await axios.get(
+          `https://post-backend-9ycs.onrender.com/post/${id}`
+        );
         const postData = response.data;
         setTitle(postData.title);
         setSummary(postData.summary);
@@ -43,7 +45,9 @@ export default function EditPost() {
         const markdownContent = turndownService.turndown(postData.content);
         setContent(markdownContent);
         if (postData.cover) {
-          setCurrentCover(`http://localhost:4000/uploads/${postData.cover}`);
+          setCurrentCover(
+            `https://post-backend-9ycs.onrender.com/uploads/${postData.cover}`
+          );
         }
       } catch (error) {
         console.error("获取文章失败:", error);
@@ -101,7 +105,7 @@ export default function EditPost() {
         hasFile: !!files[0],
       });
       const response = await axios.put(
-        `http://localhost:4000/post/${id}`,
+        `https://post-backend-9ycs.onrender.com/post/${id}`,
         data,
         {
           withCredentials: true,
