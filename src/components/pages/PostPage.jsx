@@ -104,17 +104,19 @@ export default function PostPage() {
         dangerouslySetInnerHTML={{ __html: post.content }}
       />
 
-      {user && post.author && user.id === String(post.author._id) && (
-        <div className="post-actions">
-          <Link to={`/edit/${post._id}`} className="edit-button">
-            编辑文章
-          </Link>
+      {user &&
+        post.author &&
+        user.id === String(post.author._id) && ( // 注意这里 post.author._id 可能是 ObjectId 类型，需要转成字符串比较
+          <div className="post-actions">
+            <Link to={`/edit/${post._id}`} className="edit-button">
+              编辑文章
+            </Link>
 
-          <button onClick={handleDeleteButtonClick} className="delete-button">
-            删除文章
-          </button>
-        </div>
-      )}
+            <button onClick={handleDeleteButtonClick} className="delete-button">
+              删除文章
+            </button>
+          </div>
+        )}
 
       {showDeleteModal && (
         <ConfirmModal

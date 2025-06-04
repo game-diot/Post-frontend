@@ -17,7 +17,7 @@ export default function Header() {
     const token = document.cookie.includes("token=");
     if (token) {
       axios
-        .get("https://post-backend-9ycs.onrender.com/profile", {
+        .get("http://localhost:4000/profile", {
           // 发送请求时带上凭证
           withCredentials: true,
         })
