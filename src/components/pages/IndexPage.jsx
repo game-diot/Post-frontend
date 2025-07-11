@@ -2,10 +2,10 @@ import Post from "../Post";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { FaHandPointUp, FaHandPointDown } from "react-icons/fa"; // 引入图标
-
+import InfoDialog from "../InfoDialog";
 export default function IndexPage() {
   const [posts, setPosts] = useState([]);
-
+  const [showDialog, setShowDialog] = useState(true);
   useEffect(() => {
     axios
       .get("https://post-backend-9ycs.onrender.com/post")
@@ -39,6 +39,7 @@ export default function IndexPage() {
 
   return (
     <>
+      {showDialog && <InfoDialog onClose={() => setShowDialog(false)} />}
       {posts.length > 0 &&
         posts.map((post, index) => (
           <div
