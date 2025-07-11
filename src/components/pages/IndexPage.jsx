@@ -5,7 +5,7 @@ import { FaHandPointUp, FaHandPointDown } from "react-icons/fa"; // 引入图标
 import InfoDialog from "../InfoDialog";
 export default function IndexPage() {
   const [posts, setPosts] = useState([]);
-  const [showDialog, setShowDialog] = useState(true);
+  const [showDialog, setShowDialog] = useState(false);
   useEffect(() => {
     axios
       .get("https://post-backend-9ycs.onrender.com/post")
