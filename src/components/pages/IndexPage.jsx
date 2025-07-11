@@ -36,10 +36,21 @@ export default function IndexPage() {
     ];
     setPosts(newPosts);
   };
+  // 判断是否已经看过弹窗
+  useEffect(() => {
+    const hasSeen = localStorage.getItem("hasSeenInfoDialog");
+    if (!hasSeen) {
+      setShowDialog(true);
+    }
+  }, []);
 
+  const handleCloseDialog = () => {
+    setShowDialog(false);
+    localStorage.setItem("hasSeenInfoDialog", "true"); // 持久记录
+  };
   return (
     <>
-      {showDialog && <InfoDialog onClose={() => setShowDialog(false)} />}
+      {showDialog && <InfoDialog onClose={handleCloseDialog} />}
       {posts.length > 0 &&
         posts.map((post, index) => (
           <div
