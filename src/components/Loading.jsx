@@ -1,6 +1,8 @@
 import React from "react";
 
-const Loading = ({ message = "后端内容正在加载中..." }) => {
+const Loading = ({
+  message = "后端数据因Render冷启动问题，可能会加载缓慢，请稍等。",
+}) => {
   return (
     <div style={styles.overlay}>
       <div style={styles.container}>
